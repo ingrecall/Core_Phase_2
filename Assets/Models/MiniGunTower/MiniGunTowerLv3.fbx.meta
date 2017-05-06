@@ -1,35 +1,45 @@
 fileFormatVersion: 2
-guid: e106c5de38a3b294a926c411c952e7de
-timeCreated: 1484154201
+guid: cd26730d495a44e438e9f6adfd95b65c
+timeCreated: 1484154229
 licenseType: Pro
 ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
-    100000: //RootNode
-    100002: MiniGun_Lv_3:MiniGun_Lv_1:Base
-    100004: MiniGun_Lv_3:MiniGun_Lv_1:Base_Sub
-    100006: MiniGun_Lv_3:MiniGun_Lv_1:Gun
-    100008: MiniGun_Lv_3:MiniGun_Lv_1:Head
-    400000: //RootNode
-    400002: MiniGun_Lv_3:MiniGun_Lv_1:Base
-    400004: MiniGun_Lv_3:MiniGun_Lv_1:Base_Sub
-    400006: MiniGun_Lv_3:MiniGun_Lv_1:Gun
-    400008: MiniGun_Lv_3:MiniGun_Lv_1:Head
-    2300000: MiniGun_Lv_3:MiniGun_Lv_1:Base
-    2300002: MiniGun_Lv_3:MiniGun_Lv_1:Base_Sub
-    2300004: MiniGun_Lv_3:MiniGun_Lv_1:Gun
-    2300006: MiniGun_Lv_3:MiniGun_Lv_1:Head
-    3300000: MiniGun_Lv_3:MiniGun_Lv_1:Base
-    3300002: MiniGun_Lv_3:MiniGun_Lv_1:Base_Sub
-    3300004: MiniGun_Lv_3:MiniGun_Lv_1:Gun
-    3300006: MiniGun_Lv_3:MiniGun_Lv_1:Head
-    4300000: MiniGun_Lv_3:MiniGun_Lv_1:Base
-    4300002: MiniGun_Lv_3:MiniGun_Lv_1:Base_Sub
-    4300004: MiniGun_Lv_3:MiniGun_Lv_1:Head
-    4300006: MiniGun_Lv_3:MiniGun_Lv_1:Gun
+    100000: Base
+    100002: Gun_1
+    100004: Gun_2
+    100006: Gun_Tower
+    100008: Head
+    100010: Head_Sub
+    100012: //RootNode
+    400000: Base
+    400002: Gun_1
+    400004: Gun_2
+    400006: Gun_Tower
+    400008: Head
+    400010: Head_Sub
+    400012: //RootNode
+    2300000: Base
+    2300002: Gun_1
+    2300004: Gun_2
+    2300006: Gun_Tower
+    2300008: Head
+    2300010: Head_Sub
+    3300000: Base
+    3300002: Gun_1
+    3300004: Gun_2
+    3300006: Gun_Tower
+    3300008: Head
+    3300010: Head_Sub
+    4300000: Base
+    4300002: Head_Sub
+    4300004: Head
+    4300006: Gun_Tower
+    4300008: Gun_1
+    4300010: Gun_2
     9500000: //RootNode
   materials:
-    importMaterials: 1
+    importMaterials: 0
     materialName: 0
     materialSearch: 1
   animations:
@@ -38,6 +48,8 @@ ModelImporter:
     resampleCurves: 1
     optimizeGameObjects: 0
     motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
     animationImportErrors: 
     animationImportWarnings: 
     animationRetargetingWarnings: 
@@ -71,7 +83,7 @@ ModelImporter:
     normalSmoothAngle: 60
     normalImportMode: 0
     tangentImportMode: 3
-  importAnimation: 1
+  importAnimation: 0
   copyAvatar: 0
   humanDescription:
     serializedVersion: 2
@@ -87,10 +99,10 @@ ModelImporter:
     rootMotionBoneName: 
     rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
     hasTranslationDoF: 0
-    hasExtraRoot: 0
+    hasExtraRoot: 1
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 2
+  animationType: 0
   humanoidOversampling: 1
   additionalBone: 0
   userData: 

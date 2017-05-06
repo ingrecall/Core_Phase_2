@@ -4,17 +4,21 @@ using UnityEngine;
 
 public class PlaySceneController : MonoBehaviour
 {
-    float playerLife;
-    float playerEnergy;
+    public float playerLife;
+    public float playerEnergy;
 
-    void Start()
+    private void Start()
     {
 
     }
 
-    void Update()
+    private void Update()
     {
 
+    }
+
+    public void Init()
+    {
     }
 
     public void CreateBase()
