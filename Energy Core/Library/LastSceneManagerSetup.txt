@@ -1,4 +1,0 @@
-sceneSetups:
-- path: Assets/Scene_Re/Build_Weapon.unity
-  isLoaded: 1
-  isActive: 1
