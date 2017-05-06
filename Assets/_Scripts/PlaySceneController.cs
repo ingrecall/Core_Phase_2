@@ -2,15 +2,35 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlaySceneController : MonoBehaviour {
+public class PlaySceneController : MonoBehaviour
+{
+    float playerLife;
+    float playerEnergy;
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    void Start()
+    {
+
+    }
+
+    void Update()
+    {
+
+    }
+
+    public void CreateBase()
+    {
+        if (playerEnergy >= 10)
+        {
+            playerEnergy -= 10;
+            //Do create base here.
+        }
+    }
+
+    public void PlayerLifeSet(int inputLife, bool isPlus)
+    {
+        if (isPlus)
+            playerLife += inputLife;
+        else
+            playerLife -= inputLife;
+    }
 }
