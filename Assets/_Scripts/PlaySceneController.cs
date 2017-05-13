@@ -14,6 +14,7 @@ public class PlaySceneController : MonoBehaviour
     [SerializeField]
     GameObject[] allBasePrefab;
     float saveY;
+    int saveBaseType;
 
     public GameObject[] AllGameObject
     {
@@ -39,7 +40,7 @@ public class PlaySceneController : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0) && BaseSpaceChecker.Instance.IsAvailableToBuild == false)
+        if (BaseSpaceChecker.Instance.IsAvailableToBuild)
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
@@ -47,10 +48,20 @@ public class PlaySceneController : MonoBehaviour
             {
                 if (hit.collider.tag == "Ground")
                 {
-                    Debug.Log("Mouse down on : " + hit.collider.name + " && Where? : " + hit.point);
+                    //Debug.Log("Mouse down on : " + hit.collider.name + " && Where? : " + hit.point);
                     BaseSpaceChecker.Instance.MoveToTarget(hit.point);
                     saveY = hit.point.y;
                 }
+            }
+        }
+        if (Input.GetMouseButtonDown(0) && BaseSpaceChecker.Instance.IsAvailableToBuild && BaseSpaceChecker.Instance.GetMeshRenderer.enabled)
+        {
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+            if (Physics.Raycast(ray, out hit, 10000))
+            {
+                if (hit.collider.tag == "Ground")
+                    CreateBase(saveBaseType);
             }
         }
     }
@@ -61,10 +72,19 @@ public class PlaySceneController : MonoBehaviour
         playerLife = 30;
     }
 
+    public void BaseSelected(int inputType)
+    {
+        Debug.Log("Base Selected.");
+        BaseSpaceChecker.Instance.ClearList();
+        BaseSpaceChecker.Instance.IsAvailableToBuild = true;
+        saveBaseType = inputType;
+    }
+
     public void CreateBase(int inputType)
     {
         if (playerEnergy >= 0)
         {
+            BaseSpaceChecker.Instance.IsAvailableToBuild = false;
             playerEnergy -= 0;
             Debug.Log("Created base | Current Enerygy : " + playerEnergy);
             BaseSpaceChecker.Instance.IsAvailableToBuild = false;

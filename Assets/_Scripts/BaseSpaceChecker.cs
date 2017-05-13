@@ -7,6 +7,8 @@ public class BaseSpaceChecker : MonoBehaviour
     public static BaseSpaceChecker Instance;
     MeshRenderer getMeshRenderer;
     bool isAvailableToBuild;
+    bool isNoSpace;
+    List<GameObject> allNoSpaceGameObject = new List<GameObject>();
 
     public bool IsAvailableToBuild
     {
@@ -17,6 +19,18 @@ public class BaseSpaceChecker : MonoBehaviour
         set
         {
             isAvailableToBuild = value;
+        }
+    }
+
+    public MeshRenderer GetMeshRenderer
+    {
+        get
+        {
+            return getMeshRenderer;
+        }
+        set
+        {
+            getMeshRenderer = value;
         }
     }
 
@@ -37,10 +51,10 @@ public class BaseSpaceChecker : MonoBehaviour
 
     public void MoveToTarget(Vector3 inputTransform)
     {
-        getMeshRenderer.enabled = false;
         transform.position = inputTransform;
-        isAvailableToBuild = true;
-        StartCoroutine(WaitThenShowBaseSelector());
+        if (isNoSpace)
+            return;
+        getMeshRenderer.enabled = true;
     }
 
     void OnTriggerStay(Collider other)
@@ -48,19 +62,35 @@ public class BaseSpaceChecker : MonoBehaviour
         if (other.gameObject.tag == "Base")
         {
             Debug.Log("No space.");
-            transform.position = new Vector3(0, 9999.0f, 0);
-            isAvailableToBuild = false;
-            return;
+            if (isAvailableToBuild == false)
+                transform.position = new Vector3(0, 9999.0f, 0);
+            getMeshRenderer.enabled = false;
+            isNoSpace = true;
+            if (!allNoSpaceGameObject.Contains(other.gameObject))
+                allNoSpaceGameObject.Add(other.gameObject);
         }
     }
 
-    public IEnumerator WaitThenShowBaseSelector()
+    void OnTriggerExit(Collider other)
     {
-        yield return new WaitForSeconds(0.04f);
-        if (isAvailableToBuild == false)
-            yield break;
-        Debug.Log("Show base selector ui.");
-        PlaySceneController.Instance.AllGameObject[0].SetActive(true);
-        getMeshRenderer.enabled = true;
+        if (other.gameObject.tag == "Base" && isAvailableToBuild)
+        {
+            Debug.Log("Move out from no space.");
+            if (allNoSpaceGameObject.Contains(other.gameObject))
+                allNoSpaceGameObject.Remove(other.gameObject);
+            if (allNoSpaceGameObject.Count <= 0)
+            {
+                isNoSpace = false;
+                getMeshRenderer.enabled = true;
+                isAvailableToBuild = true;
+            }
+            Debug.Log(allNoSpaceGameObject.Count);
+        }
+    }
+
+    public void ClearList()
+    {
+        allNoSpaceGameObject.Clear();
+        isNoSpace = false;
     }
 }
