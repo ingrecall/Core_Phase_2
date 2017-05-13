@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class PlaySceneController : MonoBehaviour
 {
+    #region Variable
     public static PlaySceneController Instance;
     [SerializeField]
     float playerLife;
@@ -18,7 +19,9 @@ public class PlaySceneController : MonoBehaviour
     int saveTowerLevel;
     bool isDirSelecting;
     float clickTimer;
+    #endregion
 
+    #region Get set
     public GameObject[] AllGameObject
     {
         get
@@ -42,8 +45,9 @@ public class PlaySceneController : MonoBehaviour
             isDirSelecting = value;
         }
     }
+    #endregion
 
-    private void Awake()
+    void Awake()
     {
         Instance = this;
     }
@@ -100,6 +104,7 @@ public class PlaySceneController : MonoBehaviour
         }
     }
 
+    #region Function
     public void Init()
     {
         Debug.Log("Init from PlaySceneController.");
@@ -171,4 +176,5 @@ public class PlaySceneController : MonoBehaviour
     {
         saveTowerLevel = inputLevel;
     }
+    #endregion
 }

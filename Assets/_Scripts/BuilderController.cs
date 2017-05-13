@@ -4,27 +4,25 @@ using UnityEngine;
 
 public class BuilderController : MonoBehaviour
 {
+    #region Variable
     public static BuilderController Instance;
-    public GameObject Base;
-    public GameObject MachineGunTowerLv1;
-    public GameObject MiniGunTowerLv1;
+    public bool[] allUnlock;
+    #endregion
 
-    private void Awake()
+    void Awake()
     {
         Instance = this;
     }
 
-    private void Start()
+    void Start()
     {
-
+        Init();
     }
 
-    private void Update()
-    {
-
-    }
-
+    #region Function
     public void Init()
     {
+        Debug.Log("Builder Controller Init.");
     }
+    #endregion
 }

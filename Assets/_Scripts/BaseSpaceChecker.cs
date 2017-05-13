@@ -4,12 +4,15 @@ using UnityEngine;
 
 public class BaseSpaceChecker : MonoBehaviour
 {
+    #region Variable
     public static BaseSpaceChecker Instance;
     MeshRenderer getMeshRenderer;
     bool isAvailableToBuild;
     bool isNoSpace;
     List<GameObject> allNoSpaceGameObject = new List<GameObject>();
+    #endregion
 
+    #region Get set
     public bool IsAvailableToBuild
     {
         get
@@ -33,6 +36,7 @@ public class BaseSpaceChecker : MonoBehaviour
             getMeshRenderer = value;
         }
     }
+    #endregion
 
     void Awake()
     {
@@ -42,27 +46,6 @@ public class BaseSpaceChecker : MonoBehaviour
     private void Start()
     {
         Init();
-    }
-
-    void Init()
-    {
-        getMeshRenderer = GetComponent<MeshRenderer>();
-    }
-
-    public void MoveToTarget(Vector3 inputTransform)
-    {
-        if (PlaySceneController.Instance.IsDirSelecting)
-            return;
-        transform.position = inputTransform;
-        if (isNoSpace)
-            return;
-        getMeshRenderer.enabled = true;
-    }
-
-    public void RotateToTarget(Vector3 inputTransform)
-    {
-        transform.LookAt(inputTransform);
-        Debug.Log(transform.rotation.y);
     }
 
     void OnTriggerStay(Collider other)
@@ -96,6 +79,28 @@ public class BaseSpaceChecker : MonoBehaviour
         }
     }
 
+    #region Function
+    void Init()
+    {
+        getMeshRenderer = GetComponent<MeshRenderer>();
+    }
+
+    public void MoveToTarget(Vector3 inputTransform)
+    {
+        if (PlaySceneController.Instance.IsDirSelecting)
+            return;
+        transform.position = inputTransform;
+        if (isNoSpace)
+            return;
+        getMeshRenderer.enabled = true;
+    }
+
+    public void RotateToTarget(Vector3 inputTransform)
+    {
+        transform.LookAt(inputTransform);
+        Debug.Log(transform.rotation.y);
+    }
+
     public void ClearList()
     {
         allNoSpaceGameObject.Clear();
@@ -114,4 +119,5 @@ public class BaseSpaceChecker : MonoBehaviour
             return Quaternion.Euler(0.0f, 270.0f, 0.0f);
         return Quaternion.identity;
     }
+    #endregion
 }
