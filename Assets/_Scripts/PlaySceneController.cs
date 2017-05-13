@@ -15,6 +15,9 @@ public class PlaySceneController : MonoBehaviour
     GameObject[] allBasePrefab;
     float saveY;
     int saveBaseType;
+    int saveTowerLevel;
+    bool isDirSelecting;
+    float clickTimer;
 
     public GameObject[] AllGameObject
     {
@@ -25,6 +28,18 @@ public class PlaySceneController : MonoBehaviour
         set
         {
             allGameObject = value;
+        }
+    }
+
+    public bool IsDirSelecting
+    {
+        get
+        {
+            return isDirSelecting;
+        }
+        set
+        {
+            isDirSelecting = value;
         }
     }
 
@@ -40,6 +55,8 @@ public class PlaySceneController : MonoBehaviour
 
     void Update()
     {
+        if (clickTimer > 0.0f)
+            clickTimer -= Time.deltaTime;
         if (BaseSpaceChecker.Instance.IsAvailableToBuild)
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -55,6 +72,23 @@ public class PlaySceneController : MonoBehaviour
             }
         }
         if (Input.GetMouseButtonDown(0) && BaseSpaceChecker.Instance.IsAvailableToBuild && BaseSpaceChecker.Instance.GetMeshRenderer.enabled)
+        {
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+            if (Physics.Raycast(ray, out hit, 10000))
+            {
+                if (hit.collider.tag == "Ground")
+                    isDirSelecting = true;
+            }
+        }
+        if (Input.GetMouseButton(0) && isDirSelecting)
+        {
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+            if (Physics.Raycast(ray, out hit, 10000))
+                BaseSpaceChecker.Instance.RotateToTarget(hit.point);
+        }
+        if (clickTimer <= 0.0f && Input.GetMouseButtonUp(0) && BaseSpaceChecker.Instance.IsAvailableToBuild && BaseSpaceChecker.Instance.GetMeshRenderer.enabled)
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
@@ -78,12 +112,14 @@ public class PlaySceneController : MonoBehaviour
         BaseSpaceChecker.Instance.ClearList();
         BaseSpaceChecker.Instance.IsAvailableToBuild = true;
         saveBaseType = inputType;
+        clickTimer = 0.04f;
     }
 
     public void CreateBase(int inputType)
     {
         if (playerEnergy >= 0)
         {
+            isDirSelecting = false;
             BaseSpaceChecker.Instance.IsAvailableToBuild = false;
             playerEnergy -= 0;
             Debug.Log("Created base | Current Enerygy : " + playerEnergy);
@@ -91,14 +127,16 @@ public class PlaySceneController : MonoBehaviour
             if (inputType == 1)
             {
                 Debug.Log("Created Machine Gun Tower base.");
-                GameObject newBase = Instantiate(allBasePrefab[0], BaseSpaceChecker.Instance.transform.position, Quaternion.identity) as GameObject;
+                GameObject newBase = Instantiate(allBasePrefab[0], BaseSpaceChecker.Instance.transform.position, BaseSpaceChecker.Instance.CheckDir()) as GameObject;
                 newBase.transform.position = new Vector3(newBase.transform.position.x, saveY, newBase.transform.position.z);
+                newBase.transform.GetChild(saveTowerLevel - 1).gameObject.SetActive(true);
             }
             else if (inputType == 2)
             {
                 Debug.Log("Created Minigun Gun Tower base.");
-                GameObject newBase = Instantiate(allBasePrefab[1], BaseSpaceChecker.Instance.transform.position, Quaternion.identity) as GameObject;
+                GameObject newBase = Instantiate(allBasePrefab[1], BaseSpaceChecker.Instance.transform.position, BaseSpaceChecker.Instance.CheckDir()) as GameObject;
                 newBase.transform.position = new Vector3(newBase.transform.position.x, saveY, newBase.transform.position.z);
+                newBase.transform.GetChild(saveTowerLevel - 1).gameObject.SetActive(true);
             }
         }
         else
@@ -122,5 +160,15 @@ public class PlaySceneController : MonoBehaviour
             }
         }
 
+    }
+
+    public void OpenLevelGroup(GameObject inputGameObject)
+    {
+        inputGameObject.SetActive(!inputGameObject.activeSelf);
+    }
+
+    public void LevelSelector(int inputLevel)
+    {
+        saveTowerLevel = inputLevel;
     }
 }

@@ -51,10 +51,18 @@ public class BaseSpaceChecker : MonoBehaviour
 
     public void MoveToTarget(Vector3 inputTransform)
     {
+        if (PlaySceneController.Instance.IsDirSelecting)
+            return;
         transform.position = inputTransform;
         if (isNoSpace)
             return;
         getMeshRenderer.enabled = true;
+    }
+
+    public void RotateToTarget(Vector3 inputTransform)
+    {
+        transform.LookAt(inputTransform);
+        Debug.Log(transform.rotation.y);
     }
 
     void OnTriggerStay(Collider other)
@@ -92,5 +100,18 @@ public class BaseSpaceChecker : MonoBehaviour
     {
         allNoSpaceGameObject.Clear();
         isNoSpace = false;
+    }
+
+    public Quaternion CheckDir()
+    {
+        if (transform.rotation.y >= -0.3f && transform.rotation.y <= 0.3f)
+            return Quaternion.Euler(0.0f, 0.0f, 0.0f);
+        if (transform.rotation.y > 0.3f && transform.rotation.y < 0.9f)
+            return Quaternion.Euler(0.0f, 90.0f, 0.0f);
+        if (transform.rotation.y >= 0.9f && transform.rotation.y <= 1.0f)
+            return Quaternion.Euler(0.0f, 180.0f, 0.0f);
+        if (transform.rotation.y > -0.9f && transform.rotation.y < -0.3f)
+            return Quaternion.Euler(0.0f, 270.0f, 0.0f);
+        return Quaternion.identity;
     }
 }
