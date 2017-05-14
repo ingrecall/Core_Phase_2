@@ -17,7 +17,7 @@ public class TowerController : MonoBehaviour
     [SerializeField]
     [Range(0, 100)]
     float maxHeightDetectRange;
-    GameObject targetToShoot;
+    List<GameObject> targetToShoot = new List<GameObject>();
     [SerializeField]
     Transform rotateGameObject;
     [SerializeField]
@@ -53,20 +53,20 @@ public class TowerController : MonoBehaviour
             return;
         if (isCanBeRotateWhenDetected && rotateGameObject != null && isOnlyGunRotate == false && isOnlyBarrelRotate == false)
         {
-            var targetToRotation = Quaternion.LookRotation(-rotateGameObject.position - -targetToShoot.transform.position);
+            var targetToRotation = Quaternion.LookRotation(-rotateGameObject.position - -targetToShoot[0].transform.position);
             rotateGameObject.rotation = Quaternion.Slerp(rotateGameObject.rotation, targetToRotation, rotationSpeed * Time.deltaTime);
         }
         else if (isCanBeRotateWhenDetected && gunGameObject != null && isOnlyGunRotate && isOnlyBarrelRotate == false)
         {
-            var targetToRotation = Quaternion.LookRotation(-gunGameObject.position - -targetToShoot.transform.position);
+            var targetToRotation = Quaternion.LookRotation(-gunGameObject.position - -targetToShoot[0].transform.position);
             gunGameObject.rotation = Quaternion.Slerp(gunGameObject.rotation, targetToRotation, rotationSpeed * Time.deltaTime);
         }
         else if (isCanBeRotateWhenDetected && barrelGameObject != null && isOnlyGunRotate == false && isOnlyBarrelRotate)
         {
-            var targetToRotation = Quaternion.LookRotation(-barrelGameObject.position - -targetToShoot.transform.position);
+            var targetToRotation = Quaternion.LookRotation(-barrelGameObject.position - -targetToShoot[0].transform.position);
             barrelGameObject.rotation = Quaternion.Slerp(barrelGameObject.rotation, targetToRotation, rotationSpeed * Time.deltaTime);
         }
-        if (Vector3.Distance(transform.position, targetToShoot.transform.position) < shootAbleRange)
+        if (Vector3.Distance(transform.position, targetToShoot[0].transform.position) < shootAbleRange)
         {
             Debug.Log("Able to shoot.");
         }
@@ -79,13 +79,13 @@ public class TowerController : MonoBehaviour
     void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Enemy")
-            targetToShoot = other.gameObject;
+            targetToShoot.Add(other.gameObject);
     }
 
     void OnTriggerExit(Collider other)
     {
-        if (other.gameObject == targetToShoot)
-            targetToShoot = null;
+        if (targetToShoot.Contains(other.gameObject))
+            targetToShoot.Remove(other.gameObject);
     }
 
     #region Function
