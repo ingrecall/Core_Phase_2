@@ -130,7 +130,7 @@ MonoBehaviour:
   enemyName: Hell Space Ant
   enemyHealthPoint: 1
   enemyShield: 0
-  enemyMovementSpeed: 1
+  enemyMovementSpeed: 0
 --- !u!135 &135523606238368698
 SphereCollider:
   m_ObjectHideFlags: 1
