@@ -141,5 +141,11 @@ public class BaseSpaceChecker : MonoBehaviour
         isAvailableToBuild = false;
         transform.position = new Vector3(0, 9999.0f, 0);
     }
+
+    public void CreatedBaseState()
+    {
+        getMeshRenderer01.enabled = false;
+        getMeshRenderer02.enabled = false;
+    }
     #endregion
 }

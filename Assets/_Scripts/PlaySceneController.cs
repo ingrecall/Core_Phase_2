@@ -11,6 +11,8 @@ public class PlaySceneController : MonoBehaviour
     float playerLife;
     float playerEnergy;
     [SerializeField]
+    GameObject[] allBaseSelectorGroup;
+    [SerializeField]
     GameObject[] allGameObject;
     [SerializeField]
     GameObject[] allBasePrefab;
@@ -123,11 +125,15 @@ public class PlaySceneController : MonoBehaviour
 
     public void BaseSelected(int inputType)
     {
+        if (BaseSpaceChecker.Instance.GetMeshRenderer.enabled)
+            return;
         Debug.Log("Base Selected.");
         BaseSpaceChecker.Instance.ClearList();
         BaseSpaceChecker.Instance.IsAvailableToBuild = true;
         saveBaseType = inputType;
         clickTimer = 0.04f;
+        for (int i = 0; i < allBaseSelectorGroup.Length; i++)
+            allBaseSelectorGroup[i].SetActive(false);
     }
 
     public void CreateBase(int inputType)
@@ -136,9 +142,9 @@ public class PlaySceneController : MonoBehaviour
         {
             isDirSelecting = false;
             BaseSpaceChecker.Instance.IsAvailableToBuild = false;
+            BaseSpaceChecker.Instance.CreatedBaseState();
             playerEnergy -= 0;
             Debug.Log("Created base | Current Enerygy : " + playerEnergy);
-            BaseSpaceChecker.Instance.IsAvailableToBuild = false;
             if (inputType == 1)
             {
                 Debug.Log("Created Machine Gun Tower base.");
