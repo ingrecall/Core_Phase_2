@@ -8,10 +8,10 @@ public class TowerController : MonoBehaviour
     [SerializeField]
     bool isTestRange;
     [SerializeField]
-    [Range(0, 100)]
+    [Range(0, 100]
     float rotationSpeed;
     [SerializeField]
-    [Range(0, 100)]
+    [Range(0, 1000)]
     float shootAbleRange;
     [SerializeField]
     [Range(0, 100)]
