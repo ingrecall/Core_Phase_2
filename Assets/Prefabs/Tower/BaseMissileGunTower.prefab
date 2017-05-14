@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4884117501402080}
   - component: {fileID: 33027982430618292}
   - component: {fileID: 23574357713008330}
+  - component: {fileID: 114912699607084100}
   m_Layer: 0
   m_Name: MissileGunTowerLv1
   m_TagString: Untagged
@@ -192,3 +193,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.24942198, y: 0.06126591, z: 0.24942535}
   m_Center: {x: -0.00000008568168, y: 0, z: 0}
+--- !u!114 &114912699607084100
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1051006566966162}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dfd4b7fe3cecde940b8aac1b84c9bcfd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotationSpeed: 0
+  shootAbleRange: 3
+  detectRange: 3
+  rotateGameObject: {fileID: 0}
+  isCanBeRotateWhenDetected: 0

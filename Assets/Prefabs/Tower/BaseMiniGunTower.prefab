@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4368502075018462}
   - component: {fileID: 33770139651632560}
   - component: {fileID: 23590366496803454}
+  - component: {fileID: 114888373496925448}
   m_Layer: 0
   m_Name: MiniGunTowerLv1
   m_TagString: Untagged
@@ -38,6 +39,7 @@ GameObject:
   - component: {fileID: 4608459897543110}
   - component: {fileID: 33370299935888690}
   - component: {fileID: 23579066328384952}
+  - component: {fileID: 114149870802429326}
   m_Layer: 0
   m_Name: MiniGunTowerLv3
   m_TagString: Untagged
@@ -234,6 +236,7 @@ GameObject:
   - component: {fileID: 4505866962227282}
   - component: {fileID: 33346289145791400}
   - component: {fileID: 23523619808361772}
+  - component: {fileID: 114133803085708396}
   m_Layer: 0
   m_Name: MiniGunTowerLv2
   m_TagString: Untagged
@@ -328,8 +331,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1732495464586878}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 10, y: 10, z: 10}
   m_Children:
   - {fileID: 4368502075018462}
@@ -372,7 +375,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1008319798375438}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -0.002, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4481302830788834}
@@ -415,7 +418,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1710805588568152}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.1, z: 0}
+  m_LocalPosition: {x: 0, y: 0.098, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4496193566720116}
@@ -442,7 +445,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1025449159763830}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.1, z: 0}
+  m_LocalPosition: {x: 0, y: 0.123, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4978438753365342}
@@ -1078,3 +1081,51 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.24942198, y: 0.06126591, z: 0.24942535}
   m_Center: {x: -0.00000008568168, y: 0.030397862, z: 0}
+--- !u!114 &114133803085708396
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1710805588568152}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dfd4b7fe3cecde940b8aac1b84c9bcfd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotationSpeed: 5
+  shootAbleRange: 1
+  detectRange: 1.25
+  rotateGameObject: {fileID: 4496193566720116}
+  isCanBeRotateWhenDetected: 1
+--- !u!114 &114149870802429326
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1025449159763830}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dfd4b7fe3cecde940b8aac1b84c9bcfd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotationSpeed: 5
+  shootAbleRange: 1.25
+  detectRange: 1.25
+  rotateGameObject: {fileID: 4971886348195374}
+  isCanBeRotateWhenDetected: 1
+--- !u!114 &114888373496925448
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1008319798375438}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dfd4b7fe3cecde940b8aac1b84c9bcfd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotationSpeed: 5
+  shootAbleRange: 0.75
+  detectRange: 1.25
+  rotateGameObject: {fileID: 4481302830788834}
+  isCanBeRotateWhenDetected: 1

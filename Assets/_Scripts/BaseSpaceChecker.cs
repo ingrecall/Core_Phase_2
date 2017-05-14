@@ -103,10 +103,14 @@ public class BaseSpaceChecker : MonoBehaviour
     public void RotateToTarget(Vector3 inputTransform)
     {
         transform.LookAt(inputTransform);
-        var pos = transform.rotation;
-        pos.x = 0;
-        pos.z = 0;
-        transform.rotation = pos;
+        if ((transform.eulerAngles.y >= 315.0f && transform.eulerAngles.y <= 360.0f) || (transform.eulerAngles.y >= 0.0f && transform.eulerAngles.y <= 45.0f))
+            transform.rotation = Quaternion.Euler(0.0f, 0.0f, 0.0f);
+        if (transform.eulerAngles.y > 45.0f && transform.eulerAngles.y < 135.0f)
+            transform.rotation = Quaternion.Euler(0.0f, 90.0f, 0.0f);
+        if (transform.eulerAngles.y >= 135.0f && transform.eulerAngles.y <= 215.0f)
+            transform.rotation = Quaternion.Euler(0.0f, 180.0f, 0.0f);
+        if (transform.eulerAngles.y > 215.0f && transform.eulerAngles.y < 315.0f)
+            transform.rotation = Quaternion.Euler(0.0f, 270.0f, 0.0f);
     }
 
     public void ClearList()

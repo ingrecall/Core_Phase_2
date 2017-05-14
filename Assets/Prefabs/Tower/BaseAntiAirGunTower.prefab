@@ -38,6 +38,7 @@ GameObject:
   - component: {fileID: 4431592074343110}
   - component: {fileID: 33654959935982954}
   - component: {fileID: 23006643175718212}
+  - component: {fileID: 114876483932148292}
   m_Layer: 0
   m_Name: AntiAirGunTowerLv1
   m_TagString: Untagged
@@ -332,3 +333,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.01, y: 0.05, z: 0.01}
   m_Center: {x: 0.0000000018626451, y: 0.02, z: 0}
+--- !u!114 &114876483932148292
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1566697956377116}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dfd4b7fe3cecde940b8aac1b84c9bcfd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotationSpeed: 5
+  shootAbleRange: 1.5
+  detectRange: 2
+  rotateGameObject: {fileID: 4093329043320088}
+  isCanBeRotateWhenDetected: 1
