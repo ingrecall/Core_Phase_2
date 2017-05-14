@@ -6,6 +6,8 @@ public class TowerController : MonoBehaviour
 {
     #region Variable
     [SerializeField]
+    bool isTestRange;
+    [SerializeField]
     [Range(0, 100)]
     float rotationSpeed;
     [SerializeField]
@@ -49,7 +51,12 @@ public class TowerController : MonoBehaviour
 
     void Update()
     {
-        if (targetToShoot == null)
+        if (isTestRange)
+        {
+            RadarRangeGameObject.transform.localScale = new Vector3(detectRange * 2, detectRange * 2, detectRange * 2);
+            ShootRangeGameObject.transform.localScale = new Vector3(shootAbleRange / 5.0f, shootAbleRange / 5.0f, shootAbleRange / 5.0f);
+        }
+        if (targetToShoot.Count <= 0)
             return;
         if (isCanBeRotateWhenDetected && rotateGameObject != null && isOnlyGunRotate == false && isOnlyBarrelRotate == false)
         {
