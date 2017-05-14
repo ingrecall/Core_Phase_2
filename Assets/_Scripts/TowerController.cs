@@ -14,11 +14,28 @@ public class TowerController : MonoBehaviour
     [SerializeField]
     [Range(0, 100)]
     float detectRange;
+    [SerializeField]
+    [Range(0, 100)]
+    float maxHeightDetectRange;
     GameObject targetToShoot;
     [SerializeField]
     Transform rotateGameObject;
     [SerializeField]
+    Transform gunGameObject;
+    [SerializeField]
+    Transform barrelGameObject;
+    [SerializeField]
     bool isCanBeRotateWhenDetected;
+    [SerializeField]
+    bool isOnlyGunRotate;
+    [SerializeField]
+    bool isOnlyBarrelRotate;
+    [SerializeField]
+    GameObject AirRangeGameObject;
+    [SerializeField]
+    GameObject RadarRangeGameObject;
+    [SerializeField]
+    GameObject ShootRangeGameObject;
     #endregion
 
     void Awake()
@@ -34,10 +51,20 @@ public class TowerController : MonoBehaviour
     {
         if (targetToShoot == null)
             return;
-        if (isCanBeRotateWhenDetected && rotateGameObject != null)
+        if (isCanBeRotateWhenDetected && rotateGameObject != null && isOnlyGunRotate == false && isOnlyBarrelRotate == false)
         {
             var targetToRotation = Quaternion.LookRotation(-rotateGameObject.position - -targetToShoot.transform.position);
             rotateGameObject.rotation = Quaternion.Slerp(rotateGameObject.rotation, targetToRotation, rotationSpeed * Time.deltaTime);
+        }
+        else if (isCanBeRotateWhenDetected && gunGameObject != null && isOnlyGunRotate && isOnlyBarrelRotate == false)
+        {
+            var targetToRotation = Quaternion.LookRotation(-gunGameObject.position - -targetToShoot.transform.position);
+            gunGameObject.rotation = Quaternion.Slerp(gunGameObject.rotation, targetToRotation, rotationSpeed * Time.deltaTime);
+        }
+        else if (isCanBeRotateWhenDetected && barrelGameObject != null && isOnlyGunRotate == false && isOnlyBarrelRotate)
+        {
+            var targetToRotation = Quaternion.LookRotation(-barrelGameObject.position - -targetToShoot.transform.position);
+            barrelGameObject.rotation = Quaternion.Slerp(barrelGameObject.rotation, targetToRotation, rotationSpeed * Time.deltaTime);
         }
         if (Vector3.Distance(transform.position, targetToShoot.transform.position) < shootAbleRange)
         {
@@ -69,6 +96,10 @@ public class TowerController : MonoBehaviour
         newCollider.radius = detectRange;
         newCollider.isTrigger = true;
         shootAbleRange = shootAbleRange * 10;
+        RadarRangeGameObject.SetActive(true);
+        RadarRangeGameObject.transform.localScale = new Vector3(detectRange * 2, detectRange * 2, detectRange * 2);
+        ShootRangeGameObject.SetActive(true);
+        ShootRangeGameObject.transform.localScale = new Vector3(shootAbleRange / 5.0f, shootAbleRange / 5.0f, shootAbleRange / 5.0f);
     }
     #endregion
 }
