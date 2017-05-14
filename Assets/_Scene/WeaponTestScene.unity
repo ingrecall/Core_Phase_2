@@ -1203,7 +1203,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1537871465257982, guid: 7a92cb5e12f67474980386a361651bd3, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7a92cb5e12f67474980386a361651bd3, type: 2}
@@ -4726,6 +4726,10 @@ Prefab:
     - target: {fileID: 1537871465257982, guid: 7a92cb5e12f67474980386a361651bd3, type: 2}
       propertyPath: m_Name
       value: Creep01Test
+      objectReference: {fileID: 0}
+    - target: {fileID: 1537871465257982, guid: 7a92cb5e12f67474980386a361651bd3, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7a92cb5e12f67474980386a361651bd3, type: 2}

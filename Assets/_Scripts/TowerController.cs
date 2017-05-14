@@ -37,10 +37,6 @@ public class TowerController : MonoBehaviour
         if (isCanBeRotateWhenDetected && rotateGameObject != null)
         {
             var targetToRotation = Quaternion.LookRotation(-rotateGameObject.position - -targetToShoot.transform.position);
-            //targetToRotation = Quaternion.Inverse(targetToRotation);
-            //targetToRotation.x = -targetToRotation.x;
-            //targetToRotation.y = -targetToRotation.y;
-            //targetToRotation.z = -targetToRotation.z;
             rotateGameObject.rotation = Quaternion.Slerp(rotateGameObject.rotation, targetToRotation, rotationSpeed * Time.deltaTime);
         }
         if (Vector3.Distance(transform.position, targetToShoot.transform.position) < shootAbleRange)
