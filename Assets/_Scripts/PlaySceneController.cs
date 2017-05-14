@@ -92,6 +92,11 @@ public class PlaySceneController : MonoBehaviour
             if (Physics.Raycast(ray, out hit, 10000))
                 BaseSpaceChecker.Instance.RotateToTarget(hit.point);
         }
+        if (Input.GetMouseButtonDown(1))
+        {
+            BaseSpaceChecker.Instance.CancelBuildBase();
+            isDirSelecting = false;
+        }
         if (clickTimer <= 0.0f && Input.GetMouseButtonUp(0) && BaseSpaceChecker.Instance.IsAvailableToBuild && BaseSpaceChecker.Instance.GetMeshRenderer.enabled)
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -101,6 +106,11 @@ public class PlaySceneController : MonoBehaviour
                 if (hit.collider.tag == "Ground")
                     CreateBase(saveBaseType);
             }
+        }
+        else if (clickTimer <= 0.0f && Input.GetMouseButtonUp(0) && BaseSpaceChecker.Instance.IsAvailableToBuild && !BaseSpaceChecker.Instance.GetMeshRenderer.enabled)
+        {
+            isDirSelecting = false;
+            BaseSpaceChecker.Instance.IsAvailableToBuild = false;
         }
     }
 
@@ -140,6 +150,20 @@ public class PlaySceneController : MonoBehaviour
             {
                 Debug.Log("Created Minigun Gun Tower base.");
                 GameObject newBase = Instantiate(allBasePrefab[1], BaseSpaceChecker.Instance.transform.position, BaseSpaceChecker.Instance.CheckDir()) as GameObject;
+                newBase.transform.position = new Vector3(newBase.transform.position.x, saveY, newBase.transform.position.z);
+                newBase.transform.GetChild(saveTowerLevel - 1).gameObject.SetActive(true);
+            }
+            else if (inputType == 3)
+            {
+                Debug.Log("Created Anti Air Gun Tower base.");
+                GameObject newBase = Instantiate(allBasePrefab[2], BaseSpaceChecker.Instance.transform.position, BaseSpaceChecker.Instance.CheckDir()) as GameObject;
+                newBase.transform.position = new Vector3(newBase.transform.position.x, saveY, newBase.transform.position.z);
+                newBase.transform.GetChild(saveTowerLevel - 1).gameObject.SetActive(true);
+            }
+            else if (inputType == 4)
+            {
+                Debug.Log("Created Missile Gun Tower base.");
+                GameObject newBase = Instantiate(allBasePrefab[3], BaseSpaceChecker.Instance.transform.position, BaseSpaceChecker.Instance.CheckDir()) as GameObject;
                 newBase.transform.position = new Vector3(newBase.transform.position.x, saveY, newBase.transform.position.z);
                 newBase.transform.GetChild(saveTowerLevel - 1).gameObject.SetActive(true);
             }

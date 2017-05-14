@@ -6,7 +6,8 @@ public class BaseSpaceChecker : MonoBehaviour
 {
     #region Variable
     public static BaseSpaceChecker Instance;
-    MeshRenderer getMeshRenderer;
+    MeshRenderer getMeshRenderer01;
+    MeshRenderer getMeshRenderer02;
     bool isAvailableToBuild;
     bool isNoSpace;
     List<GameObject> allNoSpaceGameObject = new List<GameObject>();
@@ -29,11 +30,11 @@ public class BaseSpaceChecker : MonoBehaviour
     {
         get
         {
-            return getMeshRenderer;
+            return getMeshRenderer01;
         }
         set
         {
-            getMeshRenderer = value;
+            getMeshRenderer01 = value;
         }
     }
     #endregion
@@ -55,7 +56,8 @@ public class BaseSpaceChecker : MonoBehaviour
             Debug.Log("No space.");
             if (isAvailableToBuild == false)
                 transform.position = new Vector3(0, 9999.0f, 0);
-            getMeshRenderer.enabled = false;
+            getMeshRenderer01.enabled = false;
+            getMeshRenderer02.enabled = false;
             isNoSpace = true;
             if (!allNoSpaceGameObject.Contains(other.gameObject))
                 allNoSpaceGameObject.Add(other.gameObject);
@@ -72,7 +74,8 @@ public class BaseSpaceChecker : MonoBehaviour
             if (allNoSpaceGameObject.Count <= 0)
             {
                 isNoSpace = false;
-                getMeshRenderer.enabled = true;
+                getMeshRenderer01.enabled = true;
+                getMeshRenderer02.enabled = true;
                 isAvailableToBuild = true;
             }
             Debug.Log(allNoSpaceGameObject.Count);
@@ -82,7 +85,8 @@ public class BaseSpaceChecker : MonoBehaviour
     #region Function
     void Init()
     {
-        getMeshRenderer = GetComponent<MeshRenderer>();
+        getMeshRenderer01 = GetComponent<MeshRenderer>();
+        getMeshRenderer02 = transform.GetChild(0).GetComponent<MeshRenderer>();
     }
 
     public void MoveToTarget(Vector3 inputTransform)
@@ -92,13 +96,17 @@ public class BaseSpaceChecker : MonoBehaviour
         transform.position = inputTransform;
         if (isNoSpace)
             return;
-        getMeshRenderer.enabled = true;
+        getMeshRenderer01.enabled = true;
+        getMeshRenderer02.enabled = true;
     }
 
     public void RotateToTarget(Vector3 inputTransform)
     {
         transform.LookAt(inputTransform);
-        Debug.Log(transform.rotation.y);
+        var pos = transform.rotation;
+        pos.x = 0;
+        pos.z = 0;
+        transform.rotation = pos;
     }
 
     public void ClearList()
@@ -118,6 +126,16 @@ public class BaseSpaceChecker : MonoBehaviour
         if (transform.rotation.y > -0.9f && transform.rotation.y < -0.3f)
             return Quaternion.Euler(0.0f, 270.0f, 0.0f);
         return Quaternion.identity;
+    }
+
+    public void CancelBuildBase()
+    {
+        allNoSpaceGameObject.Clear();
+        isNoSpace = false;
+        getMeshRenderer01.enabled = false;
+        getMeshRenderer02.enabled = false;
+        isAvailableToBuild = false;
+        transform.position = new Vector3(0, 9999.0f, 0);
     }
     #endregion
 }
