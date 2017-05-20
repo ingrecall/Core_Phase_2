@@ -78,7 +78,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1537554992275184
 GameObject:
   m_ObjectHideFlags: 0
@@ -95,7 +95,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1566697956377116
 GameObject:
   m_ObjectHideFlags: 1
@@ -170,6 +170,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4587680421880656}
   - component: {fileID: 114237595243138036}
+  - component: {fileID: 135143832461432854}
   m_Layer: 0
   m_Name: AntiAirGunTowerLv1
   m_TagString: Base
@@ -199,7 +200,7 @@ Transform:
   m_GameObject: {fileID: 1537554992275184}
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0.02, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 3, y: 3, z: 3}
   m_Children: []
   m_Father: {fileID: 4238848867546372}
   m_RootOrder: 3
@@ -211,7 +212,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1828165968495844}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 6, y: 0, z: 0}
+  m_LocalPosition: {x: -7.25, y: 0, z: -11.15}
   m_LocalScale: {x: 10, y: 10, z: 10}
   m_Children:
   - {fileID: 4587680421880656}
@@ -227,14 +228,14 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1566697956377116}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: -0, y: -0.10552433, z: -0, w: 0.9944168}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.040000003, y: 1, z: 0.040000003}
   m_Children:
   - {fileID: 4093329043320088}
   m_Father: {fileID: 4790042673655220}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -12.115001, z: 0}
 --- !u!4 &4587680421880656
 Transform:
   m_ObjectHideFlags: 1
@@ -298,7 +299,7 @@ Transform:
   m_GameObject: {fileID: 1456749988270570}
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0.01, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 4, y: 4, z: 4}
   m_Children: []
   m_Father: {fileID: 4238848867546372}
   m_RootOrder: 2
@@ -612,14 +613,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dfd4b7fe3cecde940b8aac1b84c9bcfd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isTestRange: 0
+  isTestRange: 1
   rotationSpeed: 5
-  shootAbleRange: 1.5
+  shootAbleRange: 15
   detectRange: 2
   maxRotationX: -20
   maxHeightDetectRange: 0
-  rotateGameObject: {fileID: 4093329043320088}
-  gunGameObject: {fileID: 4093329043320088}
+  rotateGameObject: {fileID: 0}
+  gunGameObject: {fileID: 0}
   barrelGameObject: {fileID: 0}
   isCanBeRotateWhenDetected: 1
   isOnlyGunRotate: 0
@@ -627,3 +628,15 @@ MonoBehaviour:
   AirRangeGameObject: {fileID: 1231309470908242}
   RadarRangeGameObject: {fileID: 1456749988270570}
   ShootRangeGameObject: {fileID: 1537554992275184}
+--- !u!135 &135143832461432854
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1897931553921560}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 2
+  m_Center: {x: 0, y: 0, z: 0}
