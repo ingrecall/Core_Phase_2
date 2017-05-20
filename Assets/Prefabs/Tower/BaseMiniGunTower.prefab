@@ -1302,11 +1302,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dfd4b7fe3cecde940b8aac1b84c9bcfd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isTestRange: 0
   rotationSpeed: 5
   shootAbleRange: 1
   detectRange: 1.25
+  maxRotationX: -20
+  maxHeightDetectRange: 0
   rotateGameObject: {fileID: 4496193566720116}
+  gunGameObject: {fileID: 4496193566720116}
+  barrelGameObject: {fileID: 0}
   isCanBeRotateWhenDetected: 1
+  isOnlyGunRotate: 0
+  isOnlyBarrelRotate: 0
   AirRangeGameObject: {fileID: 1016515268763494}
   RadarRangeGameObject: {fileID: 1873047008610802}
   ShootRangeGameObject: {fileID: 1222026098990984}
@@ -1321,11 +1328,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dfd4b7fe3cecde940b8aac1b84c9bcfd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isTestRange: 0
   rotationSpeed: 5
   shootAbleRange: 1.25
   detectRange: 1.25
+  maxRotationX: -20
+  maxHeightDetectRange: 0
   rotateGameObject: {fileID: 4971886348195374}
+  gunGameObject: {fileID: 4971886348195374}
+  barrelGameObject: {fileID: 0}
   isCanBeRotateWhenDetected: 1
+  isOnlyGunRotate: 0
+  isOnlyBarrelRotate: 0
   AirRangeGameObject: {fileID: 1016515268763494}
   RadarRangeGameObject: {fileID: 1873047008610802}
   ShootRangeGameObject: {fileID: 1222026098990984}
@@ -1340,11 +1354,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dfd4b7fe3cecde940b8aac1b84c9bcfd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isTestRange: 0
   rotationSpeed: 5
   shootAbleRange: 0.75
   detectRange: 1.25
+  maxRotationX: -20
+  maxHeightDetectRange: 0
   rotateGameObject: {fileID: 4481302830788834}
+  gunGameObject: {fileID: 4481302830788834}
+  barrelGameObject: {fileID: 0}
   isCanBeRotateWhenDetected: 1
+  isOnlyGunRotate: 0
+  isOnlyBarrelRotate: 0
   AirRangeGameObject: {fileID: 1016515268763494}
   RadarRangeGameObject: {fileID: 1873047008610802}
   ShootRangeGameObject: {fileID: 1222026098990984}

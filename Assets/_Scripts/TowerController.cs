@@ -17,6 +17,9 @@ public class TowerController : MonoBehaviour
     [Range(0, 100)]
     float detectRange;
     [SerializeField]
+    [Range(-180, 0)]
+    float maxRotationX;
+    [SerializeField]
     [Range(0, 100)]
     float maxHeightDetectRange;
     List<GameObject> targetToShoot = new List<GameObject>();
@@ -58,6 +61,12 @@ public class TowerController : MonoBehaviour
         }
         if (targetToShoot.Count <= 0)
             return;
+        if (gunGameObject.transform.rotation.x < maxRotationX)
+        {
+            var targetToRotationReverse = transform.rotation;
+            targetToRotationReverse.x += Time.deltaTime;
+            transform.rotation = targetToRotationReverse;
+        }
         if (isCanBeRotateWhenDetected && rotateGameObject != null && isOnlyGunRotate == false && isOnlyBarrelRotate == false)
         {
             var targetToRotation = Quaternion.LookRotation(-rotateGameObject.position - -targetToShoot[0].transform.position);
@@ -77,10 +86,6 @@ public class TowerController : MonoBehaviour
         {
             Debug.Log("Able to shoot.");
         }
-        /*else
-        {
-            Debug.Log(Vector3.Distance(transform.position, targetToShoot.transform.position));
-        }*/
     }
 
     void OnTriggerEnter(Collider other)

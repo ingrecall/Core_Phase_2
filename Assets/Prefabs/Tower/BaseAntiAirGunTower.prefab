@@ -612,11 +612,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dfd4b7fe3cecde940b8aac1b84c9bcfd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isTestRange: 0
   rotationSpeed: 5
   shootAbleRange: 1.5
   detectRange: 2
+  maxRotationX: -20
+  maxHeightDetectRange: 0
   rotateGameObject: {fileID: 4093329043320088}
+  gunGameObject: {fileID: 4093329043320088}
+  barrelGameObject: {fileID: 0}
   isCanBeRotateWhenDetected: 1
+  isOnlyGunRotate: 0
+  isOnlyBarrelRotate: 0
   AirRangeGameObject: {fileID: 1231309470908242}
   RadarRangeGameObject: {fileID: 1456749988270570}
   ShootRangeGameObject: {fileID: 1537554992275184}

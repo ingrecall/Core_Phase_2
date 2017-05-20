@@ -789,7 +789,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 0fc59bca07a53274588264a198314f8d, type: 2}
+  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -821,7 +821,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 0fc59bca07a53274588264a198314f8d, type: 2}
+  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -981,7 +981,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 0fc59bca07a53274588264a198314f8d, type: 2}
+  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1045,7 +1045,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 0fc59bca07a53274588264a198314f8d, type: 2}
+  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1141,7 +1141,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 0fc59bca07a53274588264a198314f8d, type: 2}
+  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1237,7 +1237,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 98be4551ffbc6ad48845b733d5cdabd2, type: 2}
+  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1269,7 +1269,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 0fc59bca07a53274588264a198314f8d, type: 2}
+  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1430,11 +1430,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dfd4b7fe3cecde940b8aac1b84c9bcfd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isTestRange: 0
   rotationSpeed: 5
   shootAbleRange: 1.5
   detectRange: 1.5
+  maxRotationX: -20
+  maxHeightDetectRange: 0
   rotateGameObject: {fileID: 4934322643100574}
+  gunGameObject: {fileID: 4934322643100574}
+  barrelGameObject: {fileID: 0}
   isCanBeRotateWhenDetected: 1
+  isOnlyGunRotate: 0
+  isOnlyBarrelRotate: 0
   AirRangeGameObject: {fileID: 1668043873623848}
   RadarRangeGameObject: {fileID: 1094727046535428}
   ShootRangeGameObject: {fileID: 1937316132492088}
@@ -1449,11 +1456,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dfd4b7fe3cecde940b8aac1b84c9bcfd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isTestRange: 0
   rotationSpeed: 5
   shootAbleRange: 1
   detectRange: 1.5
+  maxRotationX: -20
+  maxHeightDetectRange: 0
   rotateGameObject: {fileID: 4703506510391944}
+  gunGameObject: {fileID: 4703506510391944}
+  barrelGameObject: {fileID: 0}
   isCanBeRotateWhenDetected: 1
+  isOnlyGunRotate: 0
+  isOnlyBarrelRotate: 0
   AirRangeGameObject: {fileID: 1668043873623848}
   RadarRangeGameObject: {fileID: 1094727046535428}
   ShootRangeGameObject: {fileID: 1937316132492088}
@@ -1468,11 +1482,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dfd4b7fe3cecde940b8aac1b84c9bcfd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isTestRange: 0
   rotationSpeed: 5
   shootAbleRange: 1.25
   detectRange: 1.5
+  maxRotationX: -20
+  maxHeightDetectRange: 0
   rotateGameObject: {fileID: 4724825810230474}
+  gunGameObject: {fileID: 4724825810230474}
+  barrelGameObject: {fileID: 0}
   isCanBeRotateWhenDetected: 1
+  isOnlyGunRotate: 0
+  isOnlyBarrelRotate: 0
   AirRangeGameObject: {fileID: 1668043873623848}
   RadarRangeGameObject: {fileID: 1094727046535428}
   ShootRangeGameObject: {fileID: 1937316132492088}
