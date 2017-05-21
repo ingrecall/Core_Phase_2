@@ -5,6 +5,8 @@ using UnityEngine;
 public class TowerController : MonoBehaviour
 {
     #region Variable
+    bool isOverRotationX;
+    float overRotationXTimer;
     [SerializeField]
     bool isTestRange;
     [SerializeField]
@@ -17,7 +19,7 @@ public class TowerController : MonoBehaviour
     [Range(0, 100)]
     float detectRange;
     [SerializeField]
-    [Range(-180, 0)]
+    [Range(-0.4f, 0)]
     float maxRotationX;
     [SerializeField]
     [Range(0, 100)]
@@ -59,28 +61,36 @@ public class TowerController : MonoBehaviour
             RadarRangeGameObject.transform.localScale = new Vector3(detectRange * 2, detectRange * 2, detectRange * 2);
             ShootRangeGameObject.transform.localScale = new Vector3(shootAbleRange / 5.0f, shootAbleRange / 5.0f, shootAbleRange / 5.0f);
         }
+        if (isOverRotationX)
+        {
+            overRotationXTimer -= Time.deltaTime;
+            if (overRotationXTimer <= 0.0f)
+                isOverRotationX = false;
+        }
         if (targetToShoot.Count <= 0)
             return;
-        if (gunGameObject.transform.rotation.x < maxRotationX)
-        {
-            var targetToRotationReverse = transform.rotation;
-            targetToRotationReverse.x += Time.deltaTime;
-            transform.rotation = targetToRotationReverse;
-        }
         if (isCanBeRotateWhenDetected && rotateGameObject != null && isOnlyGunRotate == false && isOnlyBarrelRotate == false)
         {
             var targetToRotation = Quaternion.LookRotation(-rotateGameObject.position - -targetToShoot[0].transform.position);
+            targetToRotation.x = 0;
+            targetToRotation.z = 0;
             rotateGameObject.rotation = Quaternion.Slerp(rotateGameObject.rotation, targetToRotation, rotationSpeed * Time.deltaTime);
         }
-        else if (isCanBeRotateWhenDetected && gunGameObject != null && isOnlyGunRotate && isOnlyBarrelRotate == false)
+        if (gunGameObject.localRotation.x < maxRotationX && isOverRotationX == false)
         {
-            var targetToRotation = Quaternion.LookRotation(-gunGameObject.position - -targetToShoot[0].transform.position);
-            gunGameObject.rotation = Quaternion.Slerp(gunGameObject.rotation, targetToRotation, rotationSpeed * Time.deltaTime);
+            var gunTargetToRotationReverse = gunGameObject.rotation;
+            gunTargetToRotationReverse.x += Time.deltaTime;
+            gunGameObject.rotation = gunTargetToRotationReverse;
+            /*if (gunGameObject.localRotation.x >= maxRotationX)
+            {
+                isOverRotationX = true;
+                overRotationXTimer = 1.0f;
+            }*/
         }
-        else if (isCanBeRotateWhenDetected && barrelGameObject != null && isOnlyGunRotate == false && isOnlyBarrelRotate)
+        else if (isOverRotationX == false)
         {
-            var targetToRotation = Quaternion.LookRotation(-barrelGameObject.position - -targetToShoot[0].transform.position);
-            barrelGameObject.rotation = Quaternion.Slerp(barrelGameObject.rotation, targetToRotation, rotationSpeed * Time.deltaTime);
+            var gunTargetToRotation = Quaternion.LookRotation(-gunGameObject.position - -targetToShoot[0].transform.position);
+            gunGameObject.rotation = Quaternion.Slerp(gunGameObject.rotation, gunTargetToRotation, rotationSpeed * Time.deltaTime);
         }
         if (Vector3.Distance(transform.position, targetToShoot[0].transform.position) < shootAbleRange)
         {

@@ -150,28 +150,28 @@ public class PlaySceneController : MonoBehaviour
                 Debug.Log("Created Machine Gun Tower base.");
                 GameObject newBase = Instantiate(allBasePrefab[0], BaseSpaceChecker.Instance.transform.position, BaseSpaceChecker.Instance.CheckDir()) as GameObject;
                 newBase.transform.position = new Vector3(newBase.transform.position.x, saveY, newBase.transform.position.z);
-                newBase.transform.GetChild(saveTowerLevel - 1).gameObject.SetActive(true);
+                newBase.transform.GetChild(0).transform.GetChild(saveTowerLevel - 1).gameObject.SetActive(true);
             }
             else if (inputType == 2)
             {
                 Debug.Log("Created Minigun Gun Tower base.");
                 GameObject newBase = Instantiate(allBasePrefab[1], BaseSpaceChecker.Instance.transform.position, BaseSpaceChecker.Instance.CheckDir()) as GameObject;
                 newBase.transform.position = new Vector3(newBase.transform.position.x, saveY, newBase.transform.position.z);
-                newBase.transform.GetChild(saveTowerLevel - 1).gameObject.SetActive(true);
+                newBase.transform.GetChild(0).transform.GetChild(saveTowerLevel - 1).gameObject.SetActive(true);
             }
             else if (inputType == 3)
             {
                 Debug.Log("Created Anti Air Gun Tower base.");
                 GameObject newBase = Instantiate(allBasePrefab[2], BaseSpaceChecker.Instance.transform.position, BaseSpaceChecker.Instance.CheckDir()) as GameObject;
                 newBase.transform.position = new Vector3(newBase.transform.position.x, saveY, newBase.transform.position.z);
-                newBase.transform.GetChild(saveTowerLevel - 1).gameObject.SetActive(true);
+                newBase.transform.GetChild(0).transform.GetChild(saveTowerLevel - 1).gameObject.SetActive(true);
             }
             else if (inputType == 4)
             {
                 Debug.Log("Created Missile Gun Tower base.");
                 GameObject newBase = Instantiate(allBasePrefab[3], BaseSpaceChecker.Instance.transform.position, BaseSpaceChecker.Instance.CheckDir()) as GameObject;
                 newBase.transform.position = new Vector3(newBase.transform.position.x, saveY, newBase.transform.position.z);
-                newBase.transform.GetChild(saveTowerLevel - 1).gameObject.SetActive(true);
+                newBase.transform.GetChild(0).transform.GetChild(saveTowerLevel - 1).gameObject.SetActive(true);
             }
         }
         else
