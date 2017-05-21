@@ -102,6 +102,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4517956794929306}
+  - component: {fileID: 114566989054942346}
   m_Layer: 0
   m_Name: AntiAirTowerLv1
   m_TagString: Untagged
@@ -117,7 +118,7 @@ Transform:
   m_GameObject: {fileID: 1139903530421436}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 25, y: 1, z: 25}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4962981771433272}
   m_Father: {fileID: 4517956794929306}
@@ -130,7 +131,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1997790667306474}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -18, y: 0, z: 0}
+  m_LocalPosition: {x: -18, y: 0, z: -7.03}
   m_LocalScale: {x: 10, y: 10, z: 10}
   m_Children:
   - {fileID: 4097517771514312}
@@ -186,7 +187,7 @@ Transform:
   m_GameObject: {fileID: 1861104220401102}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.040000003, y: 1, z: 0.040000003}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4772370688034260}
   m_Father: {fileID: 4097517771514312}
@@ -348,3 +349,29 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1139903530421436}
   m_Mesh: {fileID: 4300000, guid: 3dc7825dc47489e4bb5e32bf40bced07, type: 3}
+--- !u!114 &114566989054942346
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1997790667306474}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dfd4b7fe3cecde940b8aac1b84c9bcfd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isTestRange: 0
+  rotationSpeed: 0
+  shootAbleRange: 0
+  detectRange: 0
+  maxRotationX: 0
+  maxHeightDetectRange: 0
+  rotateGameObject: {fileID: 4962981771433272}
+  gunGameObject: {fileID: 4702008424116260}
+  barrelGameObject: {fileID: 4538259201029118}
+  isCanBeRotateWhenDetected: 1
+  isOnlyGunRotate: 0
+  isOnlyBarrelRotate: 0
+  AirRangeGameObject: {fileID: 0}
+  RadarRangeGameObject: {fileID: 0}
+  ShootRangeGameObject: {fileID: 0}
