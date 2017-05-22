@@ -146,7 +146,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1008386079174060}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -12.460018, y: 0, z: -8.095102}
+  m_LocalPosition: {x: 0, y: 0.3, z: 0}
   m_LocalScale: {x: 10, y: 10, z: 10}
   m_Children:
   - {fileID: 4993462062409942}
@@ -390,9 +390,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isTestRange: 0
+  reloadTimer: 0
   rotationSpeed: 50
   shootAbleRange: 5
   detectRange: 5
+  minRotationX: 0
   maxRotationX: -0.2
   maxHeightDetectRange: 5
   rotateGameObject: {fileID: 4646129978505420}
@@ -404,3 +406,5 @@ MonoBehaviour:
   AirRangeGameObject: {fileID: 0}
   RadarRangeGameObject: {fileID: 0}
   ShootRangeGameObject: {fileID: 0}
+  myBulletGameObject: {fileID: 0}
+  firePoint: []
