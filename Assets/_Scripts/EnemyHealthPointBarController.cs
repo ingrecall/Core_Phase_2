@@ -5,11 +5,14 @@ using UnityEngine.UI;
 
 public class EnemyHealthPointBarController : MonoBehaviour
 {
+    #region Variable
     Image myHealthPointBarFill;
     [SerializeField]
     Transform followTo;
     RectTransform myRectTransform;
+    #endregion
 
+    #region Get set
     public Image MyHealthPointBarFill
     {
         get
@@ -21,6 +24,8 @@ public class EnemyHealthPointBarController : MonoBehaviour
             myHealthPointBarFill = value;
         }
     }
+    #endregion
+
     void Awake()
     {
         myHealthPointBarFill = transform.GetChild(0).GetComponent<Image>();
@@ -37,8 +42,10 @@ public class EnemyHealthPointBarController : MonoBehaviour
         }
     }
 
+    #region Function
     public void FollowToSet(Transform inputTransform)
     {
         followTo = inputTransform;
     }
+    #endregion
 }

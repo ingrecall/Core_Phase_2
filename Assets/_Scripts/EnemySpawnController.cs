@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class EnemySpawnController : MonoBehaviour
 {
+    #region Variable
     [SerializeField]
     Transform parentTo;
     [SerializeField]
@@ -12,12 +13,14 @@ public class EnemySpawnController : MonoBehaviour
     GameObject enemyHealthPointBar;
     [SerializeField]
     Transform[] allSpawnPosition;
+    #endregion
 
     void Start()
     {
         StartCoroutine(StartWave01());
     }
 
+    #region Function
     void Spawn(int inputEnemy, int inputSpawnPosition)
     {
         GameObject newEnemy = Instantiate(allEnemy[inputEnemy], allSpawnPosition[inputSpawnPosition].position, Quaternion.identity) as GameObject;
@@ -27,10 +30,13 @@ public class EnemySpawnController : MonoBehaviour
         newEnemyHealthPointBar.GetComponent<RectTransform>().localScale = new Vector3(1.0f, 0.04f, 1.0f);
         newEnemy.GetComponent<EnemyController>().SetGetEnemyHealthPointBarController(newEnemyHealthPointBar.GetComponent<EnemyHealthPointBarController>());
     }
+    #endregion
 
+    #region Enum
     IEnumerator StartWave01()
     {
         yield return new WaitForSeconds(2.0f);
         Spawn(0, 0);
     }
+    #endregion
 }
