@@ -14,6 +14,12 @@ public class EnemyController : MonoBehaviour
     float enemyHealthPoint;
     float enemyMaxHealthPoint;
     [SerializeField]
+    float enemyArmorPoint;
+    float enemyMaxArmorPoint;
+    [SerializeField]
+    float enemyEnergyArmorPoint;
+    float enemyMaxEnergyArmorPoint;
+    [SerializeField]
     float enemyShield;
     [SerializeField]
     float enemyMovementSpeed;
@@ -28,13 +34,19 @@ public class EnemyController : MonoBehaviour
     void Update()
     {
         if (isTestHp)
+        {
             getEnemyHealthPointBarController.MyHealthPointBarFill.fillAmount = enemyHealthPoint / enemyMaxHealthPoint;
+            getEnemyHealthPointBarController.MyArmorPointBarFill.fillAmount = enemyArmorPoint / enemyMaxArmorPoint;
+            getEnemyHealthPointBarController.MyEnergyArmorPointBarFill.fillAmount = enemyEnergyArmorPoint / enemyMaxEnergyArmorPoint;
+        }
     }
 
     #region Function
     void Init()
     {
         enemyMaxHealthPoint = enemyHealthPoint;
+        enemyMaxArmorPoint = enemyArmorPoint;
+        enemyMaxEnergyArmorPoint = enemyEnergyArmorPoint;
     }
 
     public void SetGetEnemyHealthPointBarController(EnemyHealthPointBarController inputEnemyHealthPointBarController)
@@ -44,15 +56,32 @@ public class EnemyController : MonoBehaviour
 
     void TakeDamage(float inputDamage)
     {
-        if (enemyHealthPoint < 0)
-            return;
-        enemyHealthPoint -= inputDamage;
-        if (enemyHealthPoint <= 0.0f)
+        if (enemyEnergyArmorPoint > 0)
         {
-            enemyHealthPoint = 0.0f;
-            Destroy(gameObject);
+            enemyEnergyArmorPoint -= inputDamage;
+            if (enemyEnergyArmorPoint <= 0.0f)
+                enemyEnergyArmorPoint = 0.0f;
+        }
+        else if (enemyArmorPoint > 0)
+        {
+            enemyArmorPoint -= inputDamage;
+            if (enemyArmorPoint <= 0.0f)
+                enemyArmorPoint = 0.0f;
+        }
+        else
+        {
+            if (enemyHealthPoint < 0)
+                return;
+            enemyHealthPoint -= inputDamage;
+            if (enemyHealthPoint <= 0.0f)
+            {
+                enemyHealthPoint = 0.0f;
+                Destroy(gameObject);
+            }
         }
         getEnemyHealthPointBarController.MyHealthPointBarFill.fillAmount = enemyHealthPoint / enemyMaxHealthPoint;
+        getEnemyHealthPointBarController.MyArmorPointBarFill.fillAmount = enemyArmorPoint / enemyMaxArmorPoint;
+        getEnemyHealthPointBarController.MyEnergyArmorPointBarFill.fillAmount = enemyEnergyArmorPoint / enemyMaxEnergyArmorPoint;
     }
     #endregion
 }

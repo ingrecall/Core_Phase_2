@@ -127,8 +127,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df5d610357c1d96499c3c8b7cf1dfc28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isTestHp: 0
   enemyName: Hell Space Ant
-  enemyHealthPoint: 1
+  enemyHealthPoint: 100
+  enemyArmorPoint: 50
+  enemyEnergyArmorPoint: 25
   enemyShield: 0
   enemyMovementSpeed: 0
 --- !u!135 &135523606238368698

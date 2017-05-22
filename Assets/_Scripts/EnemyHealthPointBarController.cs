@@ -7,6 +7,8 @@ public class EnemyHealthPointBarController : MonoBehaviour
 {
     #region Variable
     Image myHealthPointBarFill;
+    Image myArmorPointBarFill;
+    Image myEnergyArmorPointBarFill;
     [SerializeField]
     Transform followTo;
     RectTransform myRectTransform;
@@ -24,11 +26,37 @@ public class EnemyHealthPointBarController : MonoBehaviour
             myHealthPointBarFill = value;
         }
     }
+
+    public Image MyArmorPointBarFill
+    {
+        get
+        {
+            return myArmorPointBarFill;
+        }
+        set
+        {
+            myArmorPointBarFill = value;
+        }
+    }
+
+    public Image MyEnergyArmorPointBarFill
+    {
+        get
+        {
+            return myEnergyArmorPointBarFill;
+        }
+        set
+        {
+            myEnergyArmorPointBarFill = value;
+        }
+    }
     #endregion
 
     void Awake()
     {
         myHealthPointBarFill = transform.GetChild(0).GetComponent<Image>();
+        myArmorPointBarFill = transform.GetChild(1).transform.GetChild(0).GetComponent<Image>();
+        myEnergyArmorPointBarFill = transform.GetChild(2).transform.GetChild(0).GetComponent<Image>();
         myRectTransform = GetComponent<RectTransform>();
     }
 
