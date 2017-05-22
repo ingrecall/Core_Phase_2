@@ -54,7 +54,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4773625004710616}
   m_Layer: 0
-  m_Name: FirePoint
+  m_Name: FirePointLDown
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -273,7 +273,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4620221512871884}
   m_Layer: 0
-  m_Name: FirePoint
+  m_Name: FirePointR
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -338,7 +338,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4616616198754366}
   m_Layer: 0
-  m_Name: FirePoint
+  m_Name: FirePointLUp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -353,7 +353,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4487265011617194}
   m_Layer: 0
-  m_Name: FirePoint
+  m_Name: FirePointRDown
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -368,7 +368,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4486921710536582}
   m_Layer: 0
-  m_Name: FirePoint
+  m_Name: FirePointL
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -418,7 +418,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4955687886682952}
   m_Layer: 0
-  m_Name: FirePoint
+  m_Name: FirePointRUp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1460,6 +1460,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isTestRange: 0
+  reloadTimer: 0.4
   rotationSpeed: 5
   shootAbleRange: 1.5
   detectRange: 1.5
@@ -1475,6 +1476,13 @@ MonoBehaviour:
   AirRangeGameObject: {fileID: 1668043873623848}
   RadarRangeGameObject: {fileID: 1094727046535428}
   ShootRangeGameObject: {fileID: 1937316132492088}
+  myBulletGameObject: {fileID: 1524224542724516, guid: 56e54917676c79d45ab09eb88368cda8,
+    type: 2}
+  firePoint:
+  - {fileID: 4616616198754366}
+  - {fileID: 4773625004710616}
+  - {fileID: 4955687886682952}
+  - {fileID: 4487265011617194}
 --- !u!114 &114530158825505470
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1487,6 +1495,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isTestRange: 0
+  reloadTimer: 0.4
   rotationSpeed: 5
   shootAbleRange: 1
   detectRange: 1.5
@@ -1502,6 +1511,10 @@ MonoBehaviour:
   AirRangeGameObject: {fileID: 1668043873623848}
   RadarRangeGameObject: {fileID: 1094727046535428}
   ShootRangeGameObject: {fileID: 1937316132492088}
+  myBulletGameObject: {fileID: 1524224542724516, guid: 56e54917676c79d45ab09eb88368cda8,
+    type: 2}
+  firePoint:
+  - {fileID: 4949528267213858}
 --- !u!114 &114828696621809816
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1514,6 +1527,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isTestRange: 0
+  reloadTimer: 0.4
   rotationSpeed: 5
   shootAbleRange: 1.25
   detectRange: 1.5
@@ -1529,3 +1543,8 @@ MonoBehaviour:
   AirRangeGameObject: {fileID: 1668043873623848}
   RadarRangeGameObject: {fileID: 1094727046535428}
   ShootRangeGameObject: {fileID: 1937316132492088}
+  myBulletGameObject: {fileID: 1524224542724516, guid: 56e54917676c79d45ab09eb88368cda8,
+    type: 2}
+  firePoint:
+  - {fileID: 4486921710536582}
+  - {fileID: 4620221512871884}

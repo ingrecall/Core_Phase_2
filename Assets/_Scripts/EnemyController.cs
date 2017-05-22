@@ -41,6 +41,15 @@ public class EnemyController : MonoBehaviour
         }
     }
 
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Bullet")
+        {
+            TakeDamage(other.GetComponent<BulletController>().MyDamage);
+            Destroy(other.gameObject);
+        }
+    }
+
     #region Function
     void Init()
     {

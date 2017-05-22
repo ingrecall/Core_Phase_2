@@ -7,6 +7,10 @@ public class TowerController : MonoBehaviour
     #region Variable
     [SerializeField]
     bool isTestRange;
+    bool isShoot;
+    [SerializeField]
+    float reloadTimer;
+    float savedReloadTimer;
     [SerializeField]
     [Range(0, 100)]
     float rotationSpeed;
@@ -44,6 +48,10 @@ public class TowerController : MonoBehaviour
     GameObject RadarRangeGameObject;
     [SerializeField]
     GameObject ShootRangeGameObject;
+    [SerializeField]
+    GameObject myBulletGameObject;
+    [SerializeField]
+    Transform[] firePoint;
     #endregion
 
     void Awake()
@@ -57,6 +65,12 @@ public class TowerController : MonoBehaviour
 
     void Update()
     {
+        if (isShoot)
+        {
+            reloadTimer -= Time.deltaTime;
+            if (reloadTimer <= 0.0f)
+                isShoot = false;
+        }
         if (isTestRange)
         {
             RadarRangeGameObject.transform.localScale = new Vector3(detectRange * 2, detectRange * 2, detectRange * 2);
@@ -71,16 +85,19 @@ public class TowerController : MonoBehaviour
             targetToRotation.z = 0;
             rotateGameObject.rotation = Quaternion.Slerp(rotateGameObject.rotation, targetToRotation, rotationSpeed * Time.deltaTime);
         }
-        Debug.Log(gunGameObject.localRotation.x);
+        //Debug.Log(gunGameObject.localRotation.x);
         if (gunGameObject.localRotation.x < minRotationX && gunGameObject.localRotation.x > maxRotationX)
         {
             var gunTargetToRotation = Quaternion.LookRotation(-gunGameObject.position - -targetToShoot[0].transform.position);
             gunGameObject.rotation = Quaternion.Slerp(gunGameObject.rotation, gunTargetToRotation, rotationSpeed * Time.deltaTime);
         }
-        //
-        if (Vector3.Distance(transform.position, targetToShoot[0].transform.position) < shootAbleRange)
+        if (Vector3.Distance(transform.position, targetToShoot[0].transform.position) < shootAbleRange && isShoot == false)
         {
-            Debug.Log("Able to shoot.");
+            var bulletLookAt = Quaternion.LookRotation(barrelGameObject.position - -barrelGameObject.forward * 100.0f);
+            GameObject newBullet = Instantiate(myBulletGameObject, firePoint[0].position, bulletLookAt) as GameObject;
+            newBullet.GetComponent<BulletController>().FireBullet(targetToShoot[0].transform, 1.0f, 10.0f);
+            reloadTimer = savedReloadTimer;
+            isShoot = true;
         }
     }
 
@@ -108,6 +125,7 @@ public class TowerController : MonoBehaviour
         RadarRangeGameObject.transform.localScale = new Vector3(detectRange * 2, detectRange * 2, detectRange * 2);
         ShootRangeGameObject.SetActive(true);
         ShootRangeGameObject.transform.localScale = new Vector3(shootAbleRange / 5.0f, shootAbleRange / 5.0f, shootAbleRange / 5.0f);
+        savedReloadTimer = reloadTimer;
     }
     #endregion
 }
