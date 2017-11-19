@@ -5,6 +5,8 @@ using UnityEngine;
 public class TowerController : MonoBehaviour
 {
     #region Variable
+    public enum AllTowerType { Energy, MachineGun };
+    public AllTowerType towerType;
     [SerializeField]
     bool isTestRange;
     bool isShoot;
@@ -91,14 +93,14 @@ public class TowerController : MonoBehaviour
             var gunTargetToRotation = Quaternion.LookRotation(-gunGameObject.position - -targetToShoot[0].transform.position);
             gunGameObject.rotation = Quaternion.Slerp(gunGameObject.rotation, gunTargetToRotation, rotationSpeed * Time.deltaTime);
         }
-        if (Vector3.Distance(transform.position, targetToShoot[0].transform.position) < shootAbleRange && isShoot == false)
+        /*if (Vector3.Distance(transform.position, targetToShoot[0].transform.position) < shootAbleRange && isShoot == false)
         {
             var bulletLookAt = Quaternion.LookRotation(barrelGameObject.position - -barrelGameObject.forward * 100.0f);
             GameObject newBullet = Instantiate(myBulletGameObject, firePoint[0].position, bulletLookAt) as GameObject;
             newBullet.GetComponent<BulletController>().FireBullet(targetToShoot[0].transform, 1.0f, 10.0f);
             reloadTimer = savedReloadTimer;
             isShoot = true;
-        }
+        }*/
     }
 
     void OnTriggerEnter(Collider other)
@@ -126,6 +128,10 @@ public class TowerController : MonoBehaviour
         ShootRangeGameObject.SetActive(true);
         ShootRangeGameObject.transform.localScale = new Vector3(shootAbleRange / 5.0f, shootAbleRange / 5.0f, shootAbleRange / 5.0f);
         savedReloadTimer = reloadTimer;
+        if (towerType == AllTowerType.Energy)
+        {
+            PlaySceneController.Instance.EnergyChange(5.0f);
+        }
     }
     #endregion
 }

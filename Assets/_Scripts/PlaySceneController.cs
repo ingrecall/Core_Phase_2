@@ -7,46 +7,20 @@ public class PlaySceneController : MonoBehaviour
 {
     #region Variable
     public static PlaySceneController Instance;
-    [SerializeField]
-    float playerLife;
-    float playerEnergy;
-    [SerializeField]
-    GameObject[] allBaseSelectorGroup;
-    [SerializeField]
-    GameObject[] allGameObject;
-    [SerializeField]
-    GameObject[] allBasePrefab;
-    float saveY;
-    int saveBaseType;
-    int saveTowerLevel;
-    bool isDirSelecting;
-    float clickTimer;
+    public float playerLife;
+    public float playerEnergy;
+    public GameObject[] allBaseSelectorGroup;
+    public GameObject[] allGameObject;
+    public GameObject[] allBasePrefab;
+    public float saveY;
+    public int saveBaseType;
+    public int saveTowerLevel;
+    public bool isDirSelecting;
+    public float clickTimer;
+    #region HUD
+    public Image lifeFill;
+    public Image energyFill;
     #endregion
-
-    #region Get set
-    public GameObject[] AllGameObject
-    {
-        get
-        {
-            return allGameObject;
-        }
-        set
-        {
-            allGameObject = value;
-        }
-    }
-
-    public bool IsDirSelecting
-    {
-        get
-        {
-            return isDirSelecting;
-        }
-        set
-        {
-            isDirSelecting = value;
-        }
-    }
     #endregion
 
     void Awake()
@@ -120,7 +94,9 @@ public class PlaySceneController : MonoBehaviour
     public void Init()
     {
         Debug.Log("Init from PlaySceneController.");
-        playerLife = 30;
+        playerLife = 30.0f;
+        playerEnergy = 0.0f;
+        HUDValueChange();
     }
 
     public void BaseSelected(int inputType)
@@ -147,31 +123,38 @@ public class PlaySceneController : MonoBehaviour
             Debug.Log("Created base | Current Enerygy : " + playerEnergy);
             if (inputType == 1)
             {
-                Debug.Log("Created Machine Gun Tower base.");
+                Debug.Log("Created Machine Gun Tower.");
                 GameObject newBase = Instantiate(allBasePrefab[0], BaseSpaceChecker.Instance.transform.position, BaseSpaceChecker.Instance.CheckDir()) as GameObject;
                 newBase.transform.position = new Vector3(newBase.transform.position.x, saveY, newBase.transform.position.z);
-                newBase.transform.GetChild(0).transform.GetChild(saveTowerLevel - 1).gameObject.SetActive(true);
+                //newBase.transform.GetChild(0).transform.GetChild(saveTowerLevel - 1).gameObject.SetActive(true);
             }
             else if (inputType == 2)
             {
-                Debug.Log("Created Minigun Gun Tower base.");
-                GameObject newBase = Instantiate(allBasePrefab[1], BaseSpaceChecker.Instance.transform.position, BaseSpaceChecker.Instance.CheckDir()) as GameObject;
+                Debug.Log("Created Minigun Gun Tower.");
+                GameObject newBase = Instantiate(allBasePrefab[3], BaseSpaceChecker.Instance.transform.position, BaseSpaceChecker.Instance.CheckDir()) as GameObject;
                 newBase.transform.position = new Vector3(newBase.transform.position.x, saveY, newBase.transform.position.z);
-                newBase.transform.GetChild(0).transform.GetChild(saveTowerLevel - 1).gameObject.SetActive(true);
+                //newBase.transform.GetChild(0).transform.GetChild(saveTowerLevel - 1).gameObject.SetActive(true);
             }
             else if (inputType == 3)
             {
-                Debug.Log("Created Anti Air Gun Tower base.");
-                GameObject newBase = Instantiate(allBasePrefab[2], BaseSpaceChecker.Instance.transform.position, BaseSpaceChecker.Instance.CheckDir()) as GameObject;
+                Debug.Log("Created Anti Air Gun Tower.");
+                GameObject newBase = Instantiate(allBasePrefab[6], BaseSpaceChecker.Instance.transform.position, BaseSpaceChecker.Instance.CheckDir()) as GameObject;
                 newBase.transform.position = new Vector3(newBase.transform.position.x, saveY, newBase.transform.position.z);
-                newBase.transform.GetChild(0).transform.GetChild(saveTowerLevel - 1).gameObject.SetActive(true);
+                //newBase.transform.GetChild(0).transform.GetChild(saveTowerLevel - 1).gameObject.SetActive(true);
             }
             else if (inputType == 4)
             {
-                Debug.Log("Created Missile Gun Tower base.");
-                GameObject newBase = Instantiate(allBasePrefab[3], BaseSpaceChecker.Instance.transform.position, BaseSpaceChecker.Instance.CheckDir()) as GameObject;
+                Debug.Log("Created Missile Gun Tower.");
+                GameObject newBase = Instantiate(allBasePrefab[9], BaseSpaceChecker.Instance.transform.position, BaseSpaceChecker.Instance.CheckDir()) as GameObject;
                 newBase.transform.position = new Vector3(newBase.transform.position.x, saveY, newBase.transform.position.z);
-                newBase.transform.GetChild(0).transform.GetChild(saveTowerLevel - 1).gameObject.SetActive(true);
+                //newBase.transform.GetChild(0).transform.GetChild(saveTowerLevel - 1).gameObject.SetActive(true);
+            }
+            else if (inputType == 5)
+            {
+                Debug.Log("Created Energy Tower.");
+                GameObject newBase = Instantiate(allBasePrefab[12], BaseSpaceChecker.Instance.transform.position, BaseSpaceChecker.Instance.CheckDir()) as GameObject;
+                newBase.transform.position = new Vector3(newBase.transform.position.x, saveY, newBase.transform.position.z);
+                //newBase.transform.GetChild(0).transform.GetChild(saveTowerLevel - 1).gameObject.SetActive(true);
             }
         }
         else
@@ -205,6 +188,18 @@ public class PlaySceneController : MonoBehaviour
     public void LevelSelector(int inputLevel)
     {
         saveTowerLevel = inputLevel;
+    }
+
+    public void HUDValueChange()
+    {
+        lifeFill.fillAmount = playerLife / 30.0f;
+        energyFill.fillAmount = playerEnergy / 100.0f;
+    }
+
+    public void EnergyChange(float inputValue)
+    {
+        playerEnergy += inputValue;
+        HUDValueChange();
     }
     #endregion
 }

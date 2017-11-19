@@ -91,7 +91,7 @@ public class BaseSpaceChecker : MonoBehaviour
 
     public void MoveToTarget(Vector3 inputTransform)
     {
-        if (PlaySceneController.Instance.IsDirSelecting)
+        if (PlaySceneController.Instance.isDirSelecting)
             return;
         transform.position = inputTransform;
         if (isNoSpace)
